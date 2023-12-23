@@ -5,12 +5,20 @@ import { PrismaClient } from '@prisma/client';
 declare global {
 	namespace App {
 		// interface Error {}
-		// interface Locals {}
+		interface Locals {
+			auth: import('lucia').AuthRequest;
+		}
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
 	}
-	const prismaDevClient: PrismaClient;
+	namespace Lucia {
+		type Auth = import('$lib/server/db/lucia').Auth;
+		// type DatabaseUserAttributes = {};
+		// type DatabaseSessionAttributes = {};
+	}
+	// eslint-disable-next-line no-var
+	var prismaDevClient: PrismaClient;
 }
 
 export {};
